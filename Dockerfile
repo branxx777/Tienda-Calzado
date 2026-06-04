@@ -4,13 +4,13 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-RUN npm install && npm run build
+RUN npm install
+RUN npm run build
 
-RUN mkdir -p database && touch database/database.sqlite
-
-RUN chown -R www-data:www-data storage bootstrap/cache database
+RUN mkdir -p database
+RUN touch database/database.sqlite
 
 RUN chmod -R 775 storage bootstrap/cache database
 
