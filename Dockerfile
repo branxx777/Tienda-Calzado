@@ -14,8 +14,7 @@ RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
 RUN npm install && npm run build
 
-RUN mkdir -p database storage bootstrap/cache
-RUN touch database/database.sqlite
+RUN mkdir -p database storage bootstrap/cache && touch database/database.sqlite
 RUN chmod -R 775 storage bootstrap/cache database
 
 EXPOSE 10000
